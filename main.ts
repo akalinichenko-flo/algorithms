@@ -2,6 +2,9 @@ interface IAlgorithm {
     slidingWindow(array: Array<number>, k: number): number;
 
     validAnagram(word_1: string, word_2: string): boolean;
+
+    countUniqueValues(arr:Array<number>): number;
+
 }
 
 class Algorithm implements IAlgorithm {
@@ -47,7 +50,20 @@ class Algorithm implements IAlgorithm {
 
     }
 
+    // time - O(n): Video 32
+    public countUniqueValues(arr: Array<number>): number {
+        if( arr.length === 0) return 0;
+        let i=0;
+        for(let j =0; j<arr.length; j++){
+            if( arr[i] != arr[j]){
+                i++;
+                arr[i] = arr[j];
+            }
+        }
+        return i+1;
+    }
+
 }
 
 let test = new Algorithm();
-console.log(test.validAnagram('alod', 'olad'));
+console.log(test.countUniqueValues([1,1,2,3,4,5,5]));
